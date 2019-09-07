@@ -4,13 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/nyc/bin/nyc.js ./node_modules/mocha/bin/mocha --reporter spec test/**/*.js"
+    "test": "./node_modules/nyc/bin/nyc.js ./node_modules/mocha/bin/mocha --reporter spec test/**/*.js",
+    "coverage": "./node_modules/nyc/bin/nyc.js report --reporter=text-lcov > coverage.lcov && ./node_modules/codecov/bin/codecov -t 5bd494f3-6a84-4c1a-8170-cce876c8ab13",
+    "codacy-coverage": "./node_modules/nyc/bin/nyc.js report --reporter=lcov --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/.bin/codacy-coverage  && rm -rf ./coverage"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "chai": "^4.1.2",
-    "codacy-coverage": "^2.0.3",
+    "codacy-coverage": "^2.1.1",
     "codecov": "^2.3.1",
     "express": "^4.15.4",
     "istanbul": "^0.4.5",
@@ -19,5 +21,8 @@
     "nyc": "^11.2.1",
     "should": "^13.1.2",
     "supertest": "^3.0.0"
+  },
+  "devDependencies": {
+    "cypress": "^3.4.1"
   }
 }
